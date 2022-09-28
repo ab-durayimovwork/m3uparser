@@ -1,0 +1,17 @@
+#EXTM3U url-tvg="http://epg.it999.ru/edem.xml.gz" catchup=default catchup-days=7
+
+#EXTINF:-1 tvg-logo="http://milliy.tv/assets/images/logo.png" tvg-name="Milliy TV",Milliy TV
+http://milliy.tv/hls/index_480.m3u8
+
+#EXTINF:0 tvg-name="Вопросы и ответы" tvg-logo="" tvg-shift="0" group-title="Телепередачи",Вопросы и ответы
+https://digitalidea.co/m3u/redirect.php?cid=44
+#EXTINF:0 tvg-name="Че" tvg-logo="" tvg-shift="0" group-title="Телепередачи",Че
+https://digitalidea.co/m3u/redirect.php?cid=26
+#EXTINF:0 tvg-name="Домашний" tvg-logo="" tvg-shift="0" group-title="Сериалы",Домашний
+https://digitalidea.co/m3u/redirect.php?cid=14
+#EXTINF:0 tvg-name="НТВ" tvg-logo="" tvg-shift="0" group-title="Д/с",НТВ
+https://digitalidea.co/m3u/redirect.php?cid=4
+#EXTINF:0 tvg-name="Home 4K" tvg-logo="" tvg-shift="0" group-title="",Home 4K
+https://digitalidea.co/m3u/redirect.php?cid=215
+#EXTINF:0 tvg-name="Festival 4K" tvg-logo="" tvg-shift="0" group-title="",Festival 4K
+https://digitalidea.co/m3u/redirect.php?cid=216
