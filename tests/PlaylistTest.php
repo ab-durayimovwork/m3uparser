@@ -18,8 +18,8 @@ class PlaylistTest extends TestCase
         $channel->setPath('https://ya.ru');
         $channel->addExt(
             (new ExtInf)
+                ->setVal(-1)
                 ->setTitle('Первый канал')
-                ->setDuration(-1)
                 ->setAttribute('group', 'Общественные')
         );
         $channel->addExt(

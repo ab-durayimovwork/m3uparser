@@ -30,9 +30,6 @@ trait ExtAttributesTrait
         return isset($this->attributes[$name]);
     }
 
-    /**
-     * @return $this
-     */
     public function setAttributes(array $attributes): self
     {
         $this->attributes = $attributes;
@@ -40,9 +37,6 @@ trait ExtAttributesTrait
         return $this;
     }
 
-    /**
-     * @return $this
-     */
     public function setAttribute(string $name, string $value): self
     {
         $this->attributes[$name] = $value;
@@ -69,7 +63,7 @@ trait ExtAttributesTrait
 
     private function parseQuotedAttributes(string $attrString): void
     {
-        \preg_match_all('/([a-zA-Z0-9\-]+)="([^"]*)"/', $attrString, $matches, PREG_SET_ORDER);
+        preg_match_all('/([a-zA-Z0-9\-]+)="([^"]*)"/', $attrString, $matches, PREG_SET_ORDER);
 
         foreach ($matches as $match) {
             $this->setAttribute($match[1], $match[2]);
@@ -78,7 +72,7 @@ trait ExtAttributesTrait
 
     private function parseNotQuotedAttributes(string $attrString): void
     {
-        \preg_match_all('/([a-zA-Z0-9\-]+)=([^ "]+)/', $attrString, $matches, PREG_SET_ORDER);
+        preg_match_all('/([a-zA-Z0-9\-]+)=([^ "]+)/', $attrString, $matches, PREG_SET_ORDER);
 
         foreach ($matches as $match) {
             $this->setAttribute($match[1], $match[2]);

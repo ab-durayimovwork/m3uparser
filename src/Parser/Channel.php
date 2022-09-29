@@ -7,13 +7,11 @@ use M3uParser\Interfaces\ExtInterface;
 class Channel
 {
     /**
-     * @var string
+     * @var array
      */
-    protected $lineDelimiter = PHP_EOL;
-    /**
-     * @var ExtInterface[]
-     */
+
     private $exts = [];
+
     /**
      * @var null|string
      */
@@ -24,25 +22,19 @@ class Channel
         $out = '';
 
         foreach ($this->getExts() as $extTag) {
-            $out .= $extTag.$this->lineDelimiter;
+            $out .= $extTag . PHP_EOL;
         }
 
         $out .= $this->getPath();
 
-        return \rtrim($out);
+        return rtrim($out);
     }
 
-    /**
-     * @return ExtInterface[]
-     */
     public function getExts(): array
     {
         return $this->exts;
     }
 
-    /**
-     * @return $this
-     */
     public function addExt(ExtInterface $ext): self
     {
         $this->exts[] = $ext;
@@ -50,11 +42,6 @@ class Channel
         return $this;
     }
 
-    /**
-     * Remove all previously defined tags.
-     *
-     * @return $this
-     */
     public function clearExts(): self
     {
         $this->exts = [];
@@ -67,9 +54,6 @@ class Channel
         return $this->path;
     }
 
-    /**
-     * @return $this
-     */
     public function setPath(string $path): self
     {
         $this->path = $path;

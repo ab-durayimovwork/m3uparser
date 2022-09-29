@@ -11,12 +11,12 @@ class Playlist extends ArrayIterator
 
     public function __toString(): string
     {
-        $out = \rtrim('#EXTM3U ' . $this->getAttributesString()) . PHP_EOL;
+        $out = rtrim('#EXTM3U ' . $this->getAttributesString()) . PHP_EOL;
 
         foreach ($this as $entry) {
             $out .= $entry . PHP_EOL;
         }
 
-        return \rtrim($out);
+        return rtrim($out);
     }
 }

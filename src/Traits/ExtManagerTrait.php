@@ -2,7 +2,6 @@
 
 namespace M3uParser\Traits;
 
-use M3uParser\Exception;
 use M3uParser\Interfaces\ExtInterface;
 use M3uParser\Exts\ExtEnc;
 use M3uParser\Exts\ExtIcon;
@@ -16,38 +15,23 @@ trait ExtManagerTrait
      */
     private $tags = [];
 
-    /**
-     * @return $this
-     * @throws Exception
-     */
-    public function addTag(string $tag): self
+    public function addTag(ExtInterface $tag): self
     {
-        if (!\in_array(ExtInterface::class, \class_implements($tag), true)) {
-            throw new Exception(\sprintf('The class %s must be implement interface %s', $tag, ExtInterface::class));
-        }
-
         $this->tags[] = $tag;
 
         return $this;
     }
 
-    /**
-     * @return $this
-     * @throws Exception
-     */
     public function addDefaultTags(): self
     {
-        $this->addTag(ExtInf::class);
-        $this->addTag(ExtLogo::class);
-        $this->addTag(ExtIcon::class);
-        $this->addTag(ExtEnc::class);
+        $this->addTag(new ExtInf);
+        $this->addTag(new ExtLogo);
+        $this->addTag(new ExtIcon);
+        $this->addTag(new ExtEnc);
 
         return $this;
     }
 
-    /**
-     * @return $this
-     */
     public function clearTags(): self
     {
         $this->tags = [];
@@ -55,9 +39,6 @@ trait ExtManagerTrait
         return $this;
     }
 
-    /**
-     * @return array
-     */
     protected function getTags(): array
     {
         return $this->tags;

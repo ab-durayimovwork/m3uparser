@@ -9,4 +9,6 @@ interface ExtInterface
     public function __toString(): string;
 
     public static function isMatch(string $lineStr): bool;
+
+    public function make(string $lineStr);
 }

@@ -3,6 +3,7 @@
 namespace M3uParser\Tests;
 
 use M3uParser\Exts\ExtInf;
+use M3uParser\Interfaces\ExtInterface;
 use M3uParser\Parser\Channel;
 use M3uParser\Parser\Playlist;
 use PHPUnit\Framework\TestCase;
@@ -14,6 +15,14 @@ class ChannelTest extends TestCase
     public static function setUpBeforeClass(): void
     {
         self::$channel = new Channel;
+    }
+
+    /**
+     * @return ExtInterface|ExtInf
+     */
+    private function getFirstExt()
+    {
+        return self::$channel->getExts()[0];
     }
 
     public function testPath()
@@ -28,7 +37,7 @@ class ChannelTest extends TestCase
         self::$channel->addExt(
             (new ExtInf)
                 ->setTitle('Первый канал')
-                ->setDuration(-1)
+                ->setVal(-1)
         );
 
         $this->assertCount(1, self::$channel->getExts());
@@ -36,18 +45,18 @@ class ChannelTest extends TestCase
 
     public function testExt()
     {
-        $this->assertInstanceOf(ExtInf::class, self::$channel->getExts()[0]);
+        $this->assertInstanceOf(ExtInf::class, $this->getFirstExt());
     }
 
     public function testEmptyExtAttributes()
     {
-        $this->assertEmpty(self::$channel->getExts()[0]->getAttributes());
+        $this->assertEmpty($this->getFirstExt()->getAttributes());
     }
 
     public function testExtAttributes()
     {
-        $this->assertEquals('Первый канал', self::$channel->getExts()[0]->getTitle());
-        $this->assertEquals(-1, self::$channel->getExts()[0]->getDuration());
+        $this->assertEquals('Первый канал', $this->getFirstExt()->getTitle());
+        $this->assertEquals(-1, $this->getFirstExt()->getVal());
     }
 
     public function testPlaylist(): void

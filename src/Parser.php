@@ -2,9 +2,8 @@
 
 namespace M3uParser;
 
-use Exception;
-use M3uParser\Exception as M3uParserException;
 use M3uParser\Interfaces\ExtInterface;
+use M3uParser\Interfaces\PlaylistContentInterface;
 use M3uParser\Parser\Playlist;
 use M3uParser\Parser\Channel;
 use M3uParser\Traits\ExtManagerTrait;
@@ -13,24 +12,20 @@ class Parser
 {
     use ExtManagerTrait;
 
-    /**
-     * @throws M3uParserException
-     */
-    public function parseFile(string $file): Playlist
-    {
-        try {
-            $str = file_get_contents($file);
-        } catch (Exception $e) {
-            throw new M3uParserException($e);
-        }
+    /** @var PlaylistContentInterface */
+    private $playlistContent;
 
-        return $this->parse($str);
+    public function __construct(PlaylistContentInterface $playlistContent)
+    {
+        $this->playlistContent = $playlistContent;
     }
 
-    /**
-     * Parse m3u string.
-     */
-    public function parse(string $str): Playlist
+    public function parseContent(): Playlist
+    {
+        return $this->parseLines($this->playlistContent->getContent());
+    }
+
+    public function parseLines(string $str): Playlist
     {
         $this->removeBom($str);
 
